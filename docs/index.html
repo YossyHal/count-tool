@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>カウントツール</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+
+        thead,
+        tfoot {
+            background-color: #dcdcdc;
+        }
+
+        input {
+            width: 4em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>成功</th>
+                <th>失敗</th>
+                <th>合計</th>
+                <th>成功率</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input id="success" type="number" value="0" min="0" max="999"></td>
+                <td><input id="failed" type="number" value="0" min="0" max="999"></td>
+                <td id="total">0
+                <td id="successRate" style="text-align:center">0%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const successCount = document.getElementById('success');
+        const failedCount = document.getElementById('failed');
+        const totalCount = document.getElementById('total');
+        const successRate = document.getElementById('successRate');
+        function calc() {
+            totalCount.innerText = Number(successCount.value) + Number(failedCount.value);
+            successRate.innerText = Math.round(Number(successCount.value) / Number(totalCount.innerText) * 100) + "%";
+        }
+        successCount.addEventListener('change', () => {
+            calc();
+        });
+        failedCount.addEventListener('change', () => {
+            calc();
+        });
+    </script>
+</body>
+
+</html>
